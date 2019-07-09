@@ -72,9 +72,15 @@ class Digionline {
         Common.request({
             uri: 'https://digionline.hu/login',
             method: 'GET'
-        }, respose => {
-            const dom = new JSDOM(respose);
-            const token : string = dom.window.document.querySelector('[name="_token"]').value;
+        }, response => {
+            const dom = new JSDOM(response);
+
+            const tokenElem = dom.window.document.querySelector('[name="_token"]');
+            if (tokenElem == null) {
+                Log.error("Null _token! in response: ", response);
+            }
+            const token : string = tokenElem.value;
+
             Common.request({
                 uri: 'https://digionline.hu/login',
                 method: 'POST',
@@ -199,15 +205,21 @@ class Digionline {
         }
 
         const loadChannel = response => {
+            if (response == null) {
+                Log.write("Null response! Are we logged in?");
+                this.hello(id);
+                return;
+            }
+            
             const playlistBaseUrl = "https://online.digi.hu/api/streams/playlist/";
-            const playlistExtension = ".m3u8";
-
             let playlistSplit = response.split(playlistBaseUrl);
             if (playlistSplit.length < 2) {
                 Log.write("Unexpected response! Are we logged in?");
                 this.hello(id);
                 return;
             }
+            
+            const playlistExtension = ".m3u8";
             let extensionSplit = playlistSplit[1].split(playlistExtension);
             if (extensionSplit.length < 2) {
                 Log.error("Unexpected response", extensionSplit);
