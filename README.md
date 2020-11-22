@@ -32,13 +32,11 @@ _Legutoljára tesztelt hivatalos verzió: Kodi 18.5_
 
 * Kövesd bejelentkezést követően az alábbiakat:
 
-`sudo su`
+`wget -N https://raw.githubusercontent.com/istvans/digionline/master/osmc_installer.sh && bash osmc_installer.sh`
 
-`wget -N https://raw.githubusercontent.com/szabbenjamin/digionline/master/osmc_installer.sh && bash osmc_installer.sh`
+A telepítő automatikusan letölti, telepíti a futtatókörnyezetet, megkér a felhasználónév, jelszó megadására, frissíti a telepített verziót
 
-A telepítő automatikusan letölti, telepíti a futtatókörnyezetet, megkér a felhasználónév, jelszó megadására, frissíti a telepített verziót, majd újraindul
-
-* Újraindulást követően várj kb 5-10 percet míg a háttérben az elektronikus programújságot (EPG) első alkalommal betölti
+* A telepítést követően várj kb 5-10 percet míg a háttérben az elektronikus programújságot (EPG) első alkalommal betölti
 
 * PVR bővítmények között Simple IPTV client beállításait nyisd meg, fájlszinten tallózd be a channels_IPTV.m3u8 és epg.xml fájlokat
 
