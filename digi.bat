@@ -16,7 +16,7 @@ if errorlevel 1 goto wait_for_vpn
 
 REM call :sleep 5 "mp és indítom a servlet-et..."
 
-start npm start
+start run.bat
 
 call :sleep 10 "mp és nyitom a csatorna listát..."
 
